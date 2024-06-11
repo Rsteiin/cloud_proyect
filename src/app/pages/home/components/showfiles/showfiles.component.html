@@ -1,7 +1,7 @@
 <mat-accordion class="example-headers-align" multi>
     <mat-expansion-panel>
       <mat-expansion-panel-header>
-        <mat-panel-title>
+        <mat-panel-title style="font-size: 20px; height: 30px;">
           Imágenes
           <mat-icon>image</mat-icon>
         </mat-panel-title>
@@ -14,35 +14,8 @@
         [url_image]="imagen.url"
         [name_image]="imagen.filename"
         [type_image]="imagen.contentType"
+        class="file-item"
         ></app-file>
       </div>
     </mat-expansion-panel>
-  
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          Vídeos
-          <mat-icon>video_camera_back</mat-icon>
-        </mat-panel-title>
-        <mat-panel-description>
-          Total (0)
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-    </mat-expansion-panel>
-
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Documentos
-            <mat-icon>description</mat-icon>
-          </mat-panel-title>
-          <mat-panel-description>
-            Total (1)
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="list-files">
-            <app-file></app-file>
-          </div>
-      </mat-expansion-panel>
-
   </mat-accordion>

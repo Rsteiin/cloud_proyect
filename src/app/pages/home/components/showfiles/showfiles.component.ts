@@ -32,8 +32,6 @@ export class ShowfilesComponent implements OnInit {
    this.imgSrv.getImages().then(res=>{
     this.imagenes = res;
    });
-    
   }
-
 
 }

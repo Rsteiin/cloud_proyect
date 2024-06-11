@@ -1,6 +1,14 @@
 .list-files{
-    height: auto;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap; // Allow items to wrap to the next line if they don't fit in one row
     justify-content: space-between;
+    gap: 16px; // Add some gap between the items
+    padding: 16px; // Add some padding
+    
 }
+.file-item {
+    flex: 0 1 calc(33.333% - 16px); // Each item takes about a third of the container width, minus gap
+    box-sizing: border-box; // Ensure padding and border are included in the width and height calculations
+    margin-bottom: 16px; // Add some space between rows
+  }

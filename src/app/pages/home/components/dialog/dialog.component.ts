@@ -2,9 +2,11 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { ImageService } from '../../../../image.service';
 
 @Component({
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, FormsModule],
   standalone: true,
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -13,10 +15,16 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class DialogComponent {
   uploadForm: FormGroup;
   selectedFile: File | null = null;
+  filename: string = '';
+  file: string = '';
+  contentType: string = 'image/jpeg';
+  descripcion: string = '';
+  
   
   constructor(
     private fb: FormBuilder,
-    public dialog: MatDialogRef<DialogComponent>) {
+    public dialog: MatDialogRef<DialogComponent>,
+    private imageService: ImageService) {
     dialog.disableClose = true;
     this.uploadForm = this.fb.group({
       name: ['', Validators.required],
@@ -25,13 +33,26 @@ export class DialogComponent {
     });
   }
 
-  onChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length) {
-      const file = input.files[0];
-      console.log('File selected:', file);
+  onFileChange(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.file = e.target.result.split(',')[1]; // Get base64 encoded string
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
-      // Perform any additional file processing here
+  async onSubmit() {
+    if (this.filename && this.file && this.contentType && this.descripcion) {
+      const response = await this.imageService.uploadImage(this.filename, this.file, this.contentType, this.descripcion);
+      console.log(response);
+      if(response?.message === "Image uploaded successfully"){
+        this.onClosed();
+      }else{
+        
+      }
     }
   }
 

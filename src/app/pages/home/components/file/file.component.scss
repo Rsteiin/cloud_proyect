@@ -1,11 +1,23 @@
 .file{
     height: auto;
+    width: 400px;
     .card {
-        max-width: 400px;
+        max-width: 300px;
+        margin: 0 auto;
+        .image-container {
+          position: relative;
+          width: 100%;
+          padding-top: 100%; // This ensures the container maintains a 1:1 aspect ratio
+    
+          img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; // Ensures the image covers the entire container while maintaining its aspect ratio
+          }
+        }
       }
       
-      .header-image {
-        background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-        background-size: cover;
-      }
 }

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatIconModule} from '@angular/material/icon';
-
+import { ImageService } from '../../../../image.service';
 
 @Component({
   selector: 'app-file',
@@ -15,6 +15,10 @@ export class FileComponent {
   @Input() url_image = "";
   @Input() name_image = "";
   @Input() type_image = "";
+
+  constructor(
+    private imgSrv:ImageService
+  ){}
 
   descargarImagen() {
     const nombreArchivo = 'imagen.jpg'; // Puedes cambiar el nombre del archivo si lo deseas
@@ -40,5 +44,11 @@ export class FileComponent {
     }, (err) => {
       console.error('Error al copiar la URL al portapapeles: ', err);
     });
+  }
+
+  eliminarImagen() {
+    this.imgSrv.deleteImage(this.name_image).then(res=>{
+        
+     });
   }
 }

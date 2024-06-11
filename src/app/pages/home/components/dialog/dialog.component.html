@@ -1,7 +1,22 @@
-<h2 mat-dialog-title>Upload Image</h2>
-<mat-dialog-content>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button color="primary" (click)="onUpload()">Upload</button>
-</mat-dialog-actions>
+<div class="upload-container">
+  <h2>Upload Image</h2>
+  <form (ngSubmit)="onSubmit()" #imageForm="ngForm">
+    <div>
+      <label for="filename">Filename:</label>
+      <input type="text" id="filename" [(ngModel)]="filename" name="filename" required>
+    </div>
+    <div>
+      <label for="file">File:</label>
+      <input type="file" id="file" (change)="onFileChange($event)" required>
+    </div>
+    <div>
+      <label for="contentType">Content Type:</label>
+      <input type="text" id="contentType" [(ngModel)]="contentType" name="contentType" required>
+    </div>
+    <div>
+      <label for="descripcion">Description:</label>
+      <textarea id="descripcion" [(ngModel)]="descripcion" name="descripcion" required></textarea>
+    </div>
+    <button type="submit" [disabled]="!imageForm.form.valid">Upload</button>
+  </form>
+</div>
