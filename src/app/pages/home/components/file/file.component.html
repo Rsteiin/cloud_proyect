@@ -1,20 +1,20 @@
 <div class="file">
   <mat-card class="card">
     <mat-card-header>
-      <mat-card-title>Doggy</mat-card-title>
-      <mat-card-subtitle>JPG</mat-card-subtitle>
+      <mat-card-title>{{name_image}}</mat-card-title>
+      <mat-card-subtitle>{{type_image}}</mat-card-subtitle>
     </mat-card-header>
     <img
       mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      [src]="url_image"
       alt="Photo of a Shiba Inu"
     />
     <mat-card-content>
     </mat-card-content>
     <mat-card-actions>
         
-      <button mat-button>Descargar <mat-icon>download</mat-icon></button>
-      <button mat-button>Compartir <mat-icon>share</mat-icon></button>
+      <button mat-button (click)="descargarImagen()">Descargar  <mat-icon>download</mat-icon></button>
+      <button mat-button (click)="copiarUrlImagen()">Compartir Enlace<mat-icon>share</mat-icon></button>
     </mat-card-actions>
   </mat-card>
 </div>

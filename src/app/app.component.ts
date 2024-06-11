@@ -13,6 +13,11 @@ import { HomeComponent } from './pages/home/home.component';
   styleUrl: './app.component.scss',
   
 })
-export class AppComponent {
+export class AppComponent  {
   title = 'cloud-app';
+
+
+  constructor() {
+    
+  }
 }

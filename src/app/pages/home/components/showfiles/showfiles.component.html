@@ -6,13 +6,15 @@
           <mat-icon>image</mat-icon>
         </mat-panel-title>
         <mat-panel-description>
-          Total (3)
+          Total ({{imagenes.length}})
         </mat-panel-description>
       </mat-expansion-panel-header>
-      <div class="list-files">
-        <app-file></app-file>
-        <app-file></app-file>
-        <app-file></app-file>
+      <div class="list-files" *ngFor = "let imagen of imagenes">
+        <app-file
+        [url_image]="imagen.url"
+        [name_image]="imagen.filename"
+        [type_image]="imagen.contentType"
+        ></app-file>
       </div>
     </mat-expansion-panel>
   
