@@ -1,0 +1,19 @@
+.container{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    .panel{
+        height: 100%;
+        width: 100%;
+        padding: 1rem 1.5rem;
+        box-sizing: border-box;
+        background-color: #EBEDEF ;
+        .search-panel{
+            height: 80px;
+        }
+        .show-type-files{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+.search{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+
+    
+    .input-search{
+        width: 80%;
+        padding: 0rem 1.5rem;
+        box-sizing: border-box;
+        .form-field-serach{
+            width: 100%;
+            height: auto;
+        }
+    }
+    .button-search{
+        width: 20%;
+        height: auto;
+        padding: 0rem 1.5rem;
+        box-sizing: border-box;
+        align-content: center;
+        justify-content: center;
+        padding-bottom: 20px;
+        .upload-button{
+            width: 100%;
+        }
+    }
+}
