@@ -1,15 +1,4 @@
 <div class="search">
-  <div class="input-search">
-    <mat-form-field class="form-field-serach">
-      <mat-label>Buscar archivos</mat-label>
-      <input matInput type="text" [(ngModel)]="value" />
-      @if (value) {
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
-        <mat-icon>close</mat-icon>
-      </button>
-      }
-    </mat-form-field>
-  </div>
   <div class="button-search">
     <button
       mat-raised-button

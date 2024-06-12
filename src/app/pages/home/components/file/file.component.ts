@@ -1,24 +1,29 @@
 import { Component, Input } from '@angular/core';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatIconModule} from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { ImageService } from '../../../../image.service';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-file',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule,MatIconModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule],
   templateUrl: './file.component.html',
-  styleUrl: './file.component.scss'
+  styleUrl: './file.component.scss',
 })
 export class FileComponent {
-  @Input() url_image = "";
-  @Input() name_image = "";
-  @Input() type_image = "";
+  @Input() url_image = '';
+  @Input() name_image = '';
+  @Input() type_image = '';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
-  constructor(
-    private imgSrv:ImageService
-  ){}
+  constructor(private imgSrv: ImageService, private _snackBar: MatSnackBar) {}
 
   descargarImagen() {
     const nombreArchivo = 'imagen.jpg'; // Puedes cambiar el nombre del archivo si lo deseas
@@ -39,16 +44,27 @@ export class FileComponent {
     const url = this.url_image;
 
     // Copiar la URL al portapapeles
-    navigator.clipboard.writeText(url).then(() => {
-      console.log('URL copiada al portapapeles: ' + url);
-    }, (err) => {
-      console.error('Error al copiar la URL al portapapeles: ', err);
-    });
+    navigator.clipboard.writeText(url).then(
+      () => {
+        this.openSnackBar('URL copiada al portapapeles', "OK");
+      },
+      (err) => {
+        console.error('Error al copiar la URL al portapapeles: ', err);
+      }
+    );
   }
 
   eliminarImagen() {
-    this.imgSrv.deleteImage(this.name_image).then(res=>{
-        
-     });
+    this.imgSrv.deleteImage(this.name_image).then((res) => {
+      this.openSnackBar(`Se ha eliminado la image${this.name_image}`, "OK");
+    });
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 5000,
+    });
   }
 }

@@ -1,0 +1,59 @@
+.upload-container {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #ffffff; // Fondo blanco
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #3F51B5; // Borde del contenedor
+  
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+  
+    form {
+      margin-top: 20px;
+  
+      div {
+        margin-bottom: 20px;
+        label {
+          display: block;
+          margin-bottom: 5px;
+          font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"],
+        textarea {
+          width: calc(100% - 22px); // Ajuste por el padding
+          box-sizing: border-box;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          background-color: #fff;
+        }
+      }
+  
+      .upload-btn,
+      .cancel-btn {
+        width: calc(50% - 11px); // Ajuste por el padding y espacio entre botones
+        padding: 10px;
+        background-color: #3F51B5; // Color de botón
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 5px; // Espacio entre botones
+  
+        &:hover {
+          background-color: #303F9F; // Cambio de color en hover
+        }
+  
+        &:disabled {
+          background-color: #cccccc;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+  

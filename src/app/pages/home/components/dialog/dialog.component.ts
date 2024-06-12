@@ -4,9 +4,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { ImageService } from '../../../../image.service';
+import { MatInputModule } from '@angular/material/input';
+import { 
+  MatSnackBar,   
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition
+} from '@angular/material/snack-bar';
 
 @Component({
-  imports: [MatDialogModule, FormsModule],
+  imports: [MatDialogModule, FormsModule,MatInputModule],
   standalone: true,
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -19,12 +25,15 @@ export class DialogComponent {
   file: string = '';
   contentType: string = 'image/jpeg';
   descripcion: string = '';
-  
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
   
   constructor(
     private fb: FormBuilder,
     public dialog: MatDialogRef<DialogComponent>,
-    private imageService: ImageService) {
+    private imageService: ImageService,
+    private _snackBar: MatSnackBar
+  ) {
     dialog.disableClose = true;
     this.uploadForm = this.fb.group({
       name: ['', Validators.required],
@@ -49,6 +58,7 @@ export class DialogComponent {
       const response = await this.imageService.uploadImage(this.filename, this.file, this.contentType, this.descripcion);
       console.log(response);
       if(response?.message === "Image uploaded successfully"){
+        this.openSnackBar("Imagen guardada", "ok");
         this.onClosed();
       }else{
         
@@ -67,5 +77,13 @@ export class DialogComponent {
   onUpload(): void {
     // Implement upload logic here
     this.dialog.close();
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action,{
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration:5000
+    });
   }
 }

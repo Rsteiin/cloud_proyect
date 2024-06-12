@@ -17,6 +17,7 @@
       <label for="descripcion">Description:</label>
       <textarea id="descripcion" [(ngModel)]="descripcion" name="descripcion" required></textarea>
     </div>
-    <button type="submit" [disabled]="!imageForm.form.valid">Upload</button>
+    <button type="submit" mat-button [disabled]="!imageForm.form.valid" class="upload-btn">Upload</button>
+    <button type="button" (click)="onClosed()"  mat-button class="cancel-btn">Cancel</button>
   </form>
 </div>
