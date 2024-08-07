@@ -7,11 +7,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class ImageService {
   private imagenes = new BehaviorSubject<any[]>([]);
 
-  url = 'https://vlkg23nvl4.execute-api.us-east-1.amazonaws.com/v2/get-images';
+  url = 'https://vlkg23nvl4.execute-api.us-east-1.amazonaws.com/v2/obtener-imagenes';
   url_delete =
-    'https://vlkg23nvl4.execute-api.us-east-1.amazonaws.com/v2/delete-image';
+    'https://vlkg23nvl4.execute-api.us-east-1.amazonaws.com/v2/eliminar-imagen';
   url_upload =
-    'https://vlkg23nvl4.execute-api.us-east-1.amazonaws.com/v2/save-image';
+    'https://vlkg23nvl4.execute-api.us-east-1.amazonaws.com/v2/crear-imagen';
 
   constructor() {}
 
@@ -36,7 +36,7 @@ export class ImageService {
 
   async deleteImage(image_name: string): Promise<any[]> {
     const response = await fetch(this.url_delete, {
-      method: 'DELETE',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },

@@ -56,12 +56,12 @@ export class DialogComponent {
   async onSubmit() {
     if (this.filename && this.file && this.contentType && this.descripcion) {
       const response = await this.imageService.uploadImage(this.filename, this.file, this.contentType, this.descripcion);
+      this.onClosed();
+      window.location.reload(); 
       console.log(response);
       if(response?.message === "Image uploaded successfully"){
         this.openSnackBar("Imagen guardada", "ok");
-        this.onClosed();
-      }else{
-        
+
       }
     }
   }

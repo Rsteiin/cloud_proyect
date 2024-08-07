@@ -57,6 +57,7 @@ export class FileComponent {
   eliminarImagen() {
     this.imgSrv.deleteImage(this.name_image).then((res) => {
       this.openSnackBar(`Se ha eliminado la image${this.name_image}`, "OK");
+      window.location.reload(); 
     });
   }
 
